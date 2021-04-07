@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import weka.core.Attribute;
 import weka.core.Instances;
 import weka.core.converters.ArffSaver;
-import weka.core.converters.CSVLoader;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.FixedDictionaryStringToWordVector;
