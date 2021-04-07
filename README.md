@@ -1,1 +1,1 @@
-# textMinigProiektua
+# textMiningProiektua
