@@ -76,7 +76,7 @@ public class MakeCompatible {
 	}
 	private static void convertCSVtoArff(String filename) throws Exception {
 
-		// load CSV
+		// CSV- kargatu
 		CSVLoader loader = new CSVLoader();
 		loader.setSource(new File(filename));
 
