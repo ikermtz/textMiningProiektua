@@ -69,12 +69,10 @@ public class MakeCompatible {
 			arffSaver.setDestination(new File(arffOut));
 			arffSaver.setFile(new File(arffOut.toString()+".arff"));
 			arffSaver.writeBatch();	
-		
-	
 		}		
-
 	}
-	private static void convertCSVtoArff(String filename) throws Exception {
+	
+	public static void convertCSVtoArff(String filename) throws Exception {
 
 		// CSV-a kargatu
 		CSVLoader loader = new CSVLoader();
