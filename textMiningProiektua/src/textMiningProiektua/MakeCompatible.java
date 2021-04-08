@@ -76,26 +76,15 @@ public class MakeCompatible {
 	}
 	private static void convertCSVtoArff(String filename) throws Exception {
 
-		// CSV-a kargatu
 		CSVLoader loader = new CSVLoader();
-		loader.setSource(new File(filename));
+	    loader.setSource(new File(filename));
+	    Instances data = loader.getDataSet();
 
-		// CSV uses no header
-		String[] options = new String[1];
-		options[0] = "-H";
-		loader.setOptions(options);
+	    ArffSaver saver = new ArffSaver();
+	    saver.setInstances(data);
 
-		Instances data = loader.getDataSet();
-
-		// save ARFF
-		ArffSaver saver = new ArffSaver();
-		saver.setInstances(data);
-
-		filename = filename.replace(".csv", ".arff");
-
-		// saver.setDestination(new File(filename));
-		saver.setFile(new File(filename));
-		saver.writeBatch();
+	    saver.setFile(new File(filename.replace(".csv", ".arff")));
+	    saver.writeBatch();
 
 	}
 }
