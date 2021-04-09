@@ -31,6 +31,8 @@ public class MakeCompatible {
 			String arffIn= args[0];
 			String dictionary= args[1];
 			String arffOut= args[2];
+			for(String x: args)
+			System.out.println(x);
 			
 			//dev multzoa lortu (arguments atalean sartzen den lehenengo parametroa args[0])
 			DataSource source=null;
