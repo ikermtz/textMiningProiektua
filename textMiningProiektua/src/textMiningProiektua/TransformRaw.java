@@ -3,59 +3,68 @@ package textMiningProiektua;
 import weka.core.Attribute;
 import weka.core.Instances;
 import weka.core.converters.ArffSaver;
-import weka.core.converters.ConverterUtils;
+import weka.core.converters.ConverterUtils.*;
 import weka.filters.Filter;
+import weka.filters.unsupervised.attribute.Reorder;
 import weka.filters.unsupervised.attribute.StringToWordVector;
 import weka.filters.unsupervised.instance.SparseToNonSparse;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.util.Locale;
+import java.util.Arrays;
+import java.util.List;
 
 public class TransformRaw {
+	
+	/*
+	 * 3 Parametro behar ditu programak:
+	 * 	1. Testuak(instantziak) dauden direktorioa
+	 * 	2. Ateratzen den Arff-aren path-a
+	 */
+	
     public static void main(String[] args) throws Exception {
-        if (args.length != 5) {
-            System.out.println("Ez duzu arguments atala behar bezala bete!");
-            System.out.println("Erabilera:");
-            System.out.println("java -jar TransformRaw.jar train.arff hiztegia IDFTF(YES/NO) TFTF(YES/NO) SPARSE(YES/NO) ");
+        if (args.length == 0) {
+            System.out.println("");
+            System.out.println("");
+            System.out.println("java -jar TransformRaw.jar rawData.arff dictionary -I/--tfidf -N/--nonsparse ");
+        }
+        
+        else if(args.length<2 || args.length>4) System.out.println("Sintaxia txarto dago. Laguntza jasotzeko argumenturik ez erabili");
+        
+        else{
+            
+        	File file = new File(args[1]);
+            List<String> list = Arrays.asList(args);
+            
+            DataSource dataSource = new DataSource(args[0]);
+            Instances data = dataSource.getDataSet();
+            data.setClassIndex(data.numAttributes()-1);
 
-        }else{
-            /*
-            for(String s : args){
-                System.out.println(s);
-            }
-            */
-            ConverterUtils.DataSource dataSource = new ConverterUtils.DataSource(args[0]); //Instantziak kargatzen ditugu
-            Instances train = dataSource.getDataSet();
-            train.setClassIndex(0);
-            File fitxategia = new File(args[1]);  //hiztegia sortzen dugu
-
-            StringToWordVector filter = new StringToWordVector();
-            filter.setInputFormat(train);
+            
+            StringToWordVector filter = new StringToWordVector();	//Raw-tik bektore formatura
+            filter.setInputFormat(data);   
             filter.setLowerCaseTokens(true);
-            filter.setDictionaryFileToSaveTo(fitxategia); //hiztegia zein fitxategitan gordeko den zehaztu beharra dago
-            filter.setIDFTransform(args[2].toLowerCase(Locale.ROOT).equals("yes")); //Si queremos usar IDFTF
-            filter.setTFTransform(args[3].toLowerCase(Locale.ROOT).equals("yes"));  //si queremos usar TFTF
-            train = Filter.useFilter(train,filter);
-
-            if(args[4].toLowerCase(Locale.ROOT).equals("no")){ //si queremos que sea non sparse (diria que no aporta nada pero dar la opcion es gratis)
-                SparseToNonSparse stnp = new SparseToNonSparse();
-                stnp.setInputFormat(train);
-                train = Filter.useFilter(train, stnp);
-                BufferedWriter bw= new BufferedWriter(new FileWriter(args[1]));
-                for(int i=0;i<train.numAttributes()-1;i++){ //guardamos el diccionario manualmente ya que el filtro no tiene la opcion (y por eso creo que no aporta nada)
-                    Attribute a=train.attribute(i);
-                    bw.newLine();
-                    bw.write(a.name());
-                }
-                bw.flush();
-                bw.close();
+            filter.setDictionaryFileToSaveTo(file);
+            if (list.contains("-I") || list.contains("--tfidf")) filter.setIDFTransform(true); //tfidf aukera gehitzeko
+            data = Filter.useFilter(data,filter);
+            
+            if (list.contains("-N") || list.contains("--nonsparse")) {	//nonsparse-ra pasatzeko
+                SparseToNonSparse filter2 = new SparseToNonSparse();
+                filter2.setInputFormat(data);
+                data = Filter.useFilter(data, filter2);
             }
+            
+            Reorder reorder = new Reorder();
+            reorder.setAttributeIndices("2,last-1");
+            reorder.setInputFormat(data);
+            data = Filter.useFilter(data, reorder);
 
             ArffSaver as = new ArffSaver();
-            as.setInstances(train);
-            as.setFile(new File("BoW"+args[0]));
+            as.setInstances(data);
+            as.setFile(new File("/home/jorge/transformed.arff"));
             as.writeBatch();
+            
+            System.out.println("holaquetal");
         }
     }
 }

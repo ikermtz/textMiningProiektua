@@ -13,7 +13,9 @@ import weka.core.converters.TextDirectoryLoader;
 public class GetRaw {
 	
 	/*
-	 *
+	 * 2 Parametro behar ditu programak:
+	 * 	1. Testuak(instantziak) dauden direktorioa
+	 * 	2. Ateratzen den Arff-aren path-a
 	 */
 	
 	public static void main(String[] args) throws IOException, InterruptedException {
@@ -25,7 +27,7 @@ public class GetRaw {
 			System.out.println("Postbaldintzak:");
 			System.out.println("	*Arff bat bueltan");
 			System.out.println("Argumentuak: Direktorio edo fitxategiaren path-a, arff-a gordeko den path-a");
-			System.out.println("java -jar GetRaw.jar rawPath arffPath");
+			System.out.println("java -jar GetRaw.jar rawPath arffPath.arff");
 		}
 		else if (args.length==2) {
 			/*FileWriter fw= new FileWriter(args[1]);	
@@ -47,7 +49,7 @@ public class GetRaw {
 			TextToArffConverter(args[0], args[1]);
 			
 		}
-		else System.out.println("Sintaxia txarto dago laguntza jasotzeko argumenturik ez erabili");
+		else System.out.println("Sintaxia txarto dago. Laguntza jasotzeko argumenturik ez erabili");
 
 	}
 	
