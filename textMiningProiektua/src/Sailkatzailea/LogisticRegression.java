@@ -1,0 +1,92 @@
+package Sailkatzailea;
+
+import java.io.File;
+import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
+import weka.classifiers.evaluation.Evaluation;
+import weka.classifiers.functions.Logistic;
+import weka.core.Instances;
+import weka.core.converters.ConverterUtils.DataSource;
+import weka.filters.Filter;
+import weka.filters.unsupervised.instance.Randomize;
+import weka.filters.unsupervised.instance.RemovePercentage;
+import weka.core.SerializationHelper;
+
+public class LogisticRegression {
+
+	public static void main(String[] args) throws Exception {        
+       if (args.length==3) {
+    	   DataSource source = new DataSource(args[0]);
+           Instances data = source.getDataSet();
+           data.setClassIndex(data.numAttributes()-1);
+           
+           //Ebaluazio ez zintzoa
+           Logistic lrGuztiak= new Logistic();
+           lrGuztiak.buildClassifier(data);
+           
+           //HoldOut
+           
+           //randomize egin
+           Randomize filter = new Randomize();
+           filter.setRandomSeed(0);
+           filter.setInputFormat(data);
+           data = Filter.useFilter(data, filter);
+
+           //dev eta train instantzia azpimultzoak ateratzeko
+           RemovePercentage remove = new RemovePercentage();
+           remove.setInputFormat(data);
+           remove.setInvertSelection(false);
+           remove.setPercentage(30);
+           Instances train = Filter.useFilter(data, remove);	//train
+           
+           remove.setInvertSelection(true);
+           Instances dev = Filter.useFilter(data, remove);		//dev
+           
+           //logistic regression entrenatu train azpimultzoarekin
+           Logistic lr = new Logistic();
+           lr.buildClassifier(train);
+           
+           //Ebaluaketak gorde
+           PrintWriter pw = new PrintWriter(args[2]);	//ez zintzoa
+           Evaluation eval1 = new Evaluation(data);
+           eval1.evaluateModel(lrGuztiak, data);
+           
+           Evaluation eval2 = new Evaluation(train);	//holdout
+           eval2.evaluateModel(lr, dev);
+           
+           Evaluation eval3 = new Evaluation(data);		//crossvalidation
+           eval3.crossValidateModel(lrGuztiak, data, 10, new Random(1));
+           
+           pw.println("KALITATEAREN ESTIMAZIOA:");
+           pw.println();
+           pw.println("---------------------------------------------");
+           pw.println();
+           pw.println("Ebaluazio ez-zintzoa");
+           pw.println(eval1.toSummaryString());
+           pw.println();
+           pw.println("---------------------------------------------");
+           pw.println();
+           pw.println("Hold-Out");
+           pw.println(eval2.toSummaryString());
+           pw.println();
+           pw.println("---------------------------------------------");
+           pw.println();
+           pw.println("10-fold cross validation");
+           pw.println(eval3.toSummaryString());
+           
+           pw.close();
+
+           //Gorde modeloa entrenamendu multzo osoa erabiliz
+           SerializationHelper.write(args[1], lrGuztiak);
+           
+       }
+       else {
+    	   System.out.println("java -jar LogisticRegression.jar trainPath.arff LRpath.model Kalitatea.txt");
+       }
+
+	}
+
+}
