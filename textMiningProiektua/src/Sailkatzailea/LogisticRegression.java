@@ -27,6 +27,9 @@ public class LogisticRegression {
            Logistic lrGuztiak= new Logistic();
            lrGuztiak.buildClassifier(data);
            
+           //Gorde modeloa entrenamendu multzo osoa erabiliz
+           SerializationHelper.write(args[1], lrGuztiak);
+           
            //HoldOut
            
            //randomize egin
@@ -66,21 +69,25 @@ public class LogisticRegression {
            pw.println();
            pw.println("Ebaluazio ez-zintzoa");
            pw.println(eval1.toSummaryString());
+           pw.println(eval1.toClassDetailsString());
+           pw.println(eval1.toMatrixString());
            pw.println();
            pw.println("---------------------------------------------");
            pw.println();
            pw.println("Hold-Out");
            pw.println(eval2.toSummaryString());
+           pw.println(eval2.toClassDetailsString());
+           pw.println(eval2.toMatrixString());
            pw.println();
            pw.println("---------------------------------------------");
            pw.println();
            pw.println("10-fold cross validation");
            pw.println(eval3.toSummaryString());
+           pw.println(eval3.toClassDetailsString());
+           pw.println(eval3.toMatrixString());
            
            pw.close();
 
-           //Gorde modeloa entrenamendu multzo osoa erabiliz
-           SerializationHelper.write(args[1], lrGuztiak);
            
        }
        else {
