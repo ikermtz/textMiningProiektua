@@ -48,8 +48,11 @@ public class LogisticRegression {
            remove.setPercentage(30);
            Instances train = Filter.useFilter(data, remove);	//train
            
-           remove.setInvertSelection(true);
-           Instances dev = Filter.useFilter(data, remove);		//dev
+           RemovePercentage remove1 = new RemovePercentage();
+           remove1.setInputFormat(data);
+           remove1.setPercentage(30);
+           remove1.setInvertSelection(true);
+           Instances dev = Filter.useFilter(data, remove1);		//dev
            
            //logistic regression entrenatu train azpimultzoarekin
            Logistic lr = new Logistic();
