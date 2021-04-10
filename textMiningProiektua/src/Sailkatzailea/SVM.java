@@ -23,7 +23,7 @@ public class SVM {
 	           
 	           //Ebaluazio ez zintzoa
 	           LibSVM svmGuztiak= new LibSVM();
-	           svmGuztiak.setCost(1);					//parametroak gehitu
+	           svmGuztiak.setCost(1);					 //parametroak gehitu
 	           svmGuztiak.setGamma(1);
 	           svmGuztiak.buildClassifier(data);
 	           
