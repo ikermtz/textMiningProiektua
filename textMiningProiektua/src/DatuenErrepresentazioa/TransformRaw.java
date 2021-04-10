@@ -1,4 +1,4 @@
-package textMiningProiektua;
+package DatuenErrepresentazioa;
 
 import weka.core.Attribute;
 import weka.core.Instances;

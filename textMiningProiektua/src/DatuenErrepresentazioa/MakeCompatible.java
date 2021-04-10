@@ -1,4 +1,4 @@
-package textMiningProiektua;
+package DatuenErrepresentazioa;
 
 import java.io.BufferedWriter;
 import java.io.File;
