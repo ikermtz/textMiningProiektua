@@ -1,6 +1,7 @@
 package Sailkatzailea;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +19,9 @@ import weka.core.SerializationHelper;
 public class LogisticRegression {
 
 	public static void main(String[] args) throws Exception {        
-       if (args.length==3) {
+       
+		if (args.length==3) {
+    	   
     	   DataSource source = new DataSource(args[0]);
            Instances data = source.getDataSet();
            data.setClassIndex(data.numAttributes()-1);
