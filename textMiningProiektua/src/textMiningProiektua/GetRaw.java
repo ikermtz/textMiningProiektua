@@ -12,8 +12,9 @@ import weka.core.converters.TextDirectoryLoader;
 
 public class GetRaw {
 	
-	/*
+	/**
 	 * 2 Parametro behar ditu programak:
+	 * 
 	 * 	1. Testuak(instantziak) dauden direktorioa
 	 * 	2. Ateratzen den Arff-aren path-a
 	 */
@@ -53,10 +54,17 @@ public class GetRaw {
 
 	}
 	
-	public static void TextToArffConverter(String Directory, String target) throws IOException {
+	 /**
+	  * Testua Arff formatura pasa
+	  *
+	  * @param directory Testuak dauden direktorioa
+	  * @param target Irteerako arff fitxategia non gordeko den
+	  
+	  */
+	public static void TextToArffConverter(String directory, String target) throws IOException {
 
 		TextDirectoryLoader loader = new TextDirectoryLoader();
-	    loader.setDirectory(new File(Directory));
+	    loader.setDirectory(new File(directory));
 	    Instances dataRaw = loader.getDataSet();
 	    	    
 	    FileWriter fw = new FileWriter (target);
