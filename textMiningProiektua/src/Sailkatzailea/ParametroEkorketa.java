@@ -36,7 +36,7 @@ public class ParametroEkorketa {
         	for (double exp1 =-3.0; exp1<4.0; exp1+=1.0) {
             	double gamma=Math.pow(oinarria,exp1);
             	kernel.setGamma(gamma);
-            	
+            	smo.setKernel(kernel);
         		smo.buildClassifier(data);
         		Evaluation eval= new Evaluation(data);
         		eval.crossValidateModel(smo, data, 10, new Random(1));
