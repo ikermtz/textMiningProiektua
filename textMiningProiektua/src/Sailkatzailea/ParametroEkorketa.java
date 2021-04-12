@@ -15,9 +15,11 @@ public class ParametroEkorketa {
 	
     public static void main(String[] args) throws Exception {
     	
-    	DataSource dataSource = new DataSource(args[0]);
-    	data = dataSource.getDataSet();
-    	data.setClassIndex(data.numAttributes()-1);
+    	
+    	//Aldatu  behar dut, arff helbidea txarto sartzen deneko kasuan
+    	DataSource source = new DataSource(args[0]);
+    	data = source.getDataSet();
+        data.setClassIndex(data.numAttributes()-1);
     	double maximoa = 0.0;
     	pw = new PrintWriter((args[1]));
     	pw.println();
@@ -63,7 +65,7 @@ public class ParametroEkorketa {
         pw.println("Klase minoritarioaren fMeasure hoberena:");
         pw.println(maximoa);
         pw.close();
-    
+        
     }
     private static int klaseminoritarioa() throws Exception{
     	
