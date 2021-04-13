@@ -69,7 +69,7 @@ public class ParametroEkorketa {
     }
     private static int klaseminoritarioa() throws Exception{
     	
-    		//Klase minoritarioarekiko f-measure-a kalkulatu
+    		//Klase minoritarioaren indizea itzultzen du
     		pw.println(data.attribute(data.numAttributes()-1).name()+" atributu nominala da eta hauek dira ezaugarriak:");
             int[] counts = data.attributeStats(data.numAttributes()-1).nominalCounts;
             int min = 0; //Hemen klase minoritarioaren posizioa gordeko da
