@@ -49,7 +49,7 @@ public class VisualizeClusterAssignments {
 
     // setup visualization
     // taken from: ClustererPanel.startClusterer()
-    PlotData2D predData = ClustererPanel.setUpVisualizableInstances(train, eval);
+    PlotData2D predData = ClustererPanel.setUpVisualizableInstances(train, eval);	//no rula
     String name = (new SimpleDateFormat("HH:mm:ss - ")).format(new Date());
     String cname = clusterer.getClass().getName();
     if (cname.startsWith("weka.clusterers."))
