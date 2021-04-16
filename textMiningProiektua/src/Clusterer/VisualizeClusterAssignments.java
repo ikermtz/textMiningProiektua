@@ -28,7 +28,7 @@ import javax.swing.*;
  * @author FracPete (fracpete at waikato dot ac dot nz)
  */
 public class VisualizeClusterAssignments {
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) throws Exception, java.lang.Exception {
     // load data
     Instances train = DataSource.read(Utils.getOption('t', args));
     // some data formats store the class attribute information as well
