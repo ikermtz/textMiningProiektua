@@ -1,6 +1,7 @@
 package Sailkatzailea;
 
 import java.io.File;
+import java.io.PrintWriter;
 
 import weka.attributeSelection.GainRatioAttributeEval;
 import weka.attributeSelection.Ranker;
@@ -15,7 +16,7 @@ import weka.filters.supervised.attribute.AttributeSelection;
 public class FSS {
 
 	public static void main(String[] args) throws Exception{
-		if (args.length==4) {
+		if (args.length==3) {
 			DataSource sauce = new DataSource(args[0]);
 			Instances data = sauce.getDataSet();
 			data.setClassIndex(data.numAttributes()-1);
@@ -38,12 +39,16 @@ public class FSS {
 			saver.setFile(new File(args[1]));
 			saver.writeBatch();
 			
-			
+			PrintWriter pw = new PrintWriter(args[2]);
+			for (int i=0; i<filteredData.numAttributes()-1; i++) {
+                pw.println(filteredData.attribute(i).name());
+            }
+            pw.close();
 			
 		}
 		else {
-			System.out.println("Lau parametro behar dira eta zuk "+args.length+" jarri dituzu!!");
-			System.out.println("java -jar FSS.jar trainPath.arff filteredPath.arff hiztegia testpath.arff");
+			System.out.println("3 parametro behar dira eta zuk "+args.length+" jarri dituzu!!");
+			System.out.println("java -jar FSS.jar trainPath.arff filteredPath.arff hiztegia");
 		}
 
 	}
