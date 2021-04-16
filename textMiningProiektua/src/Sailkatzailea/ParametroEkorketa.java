@@ -1,12 +1,17 @@
 package Sailkatzailea;
 
+import java.io.PrintWriter;
+import java.util.Random;
+
+import com.sun.javadoc.Tag;
+
 import weka.classifiers.Evaluation;
+import weka.classifiers.bayes.net.search.global.GeneticSearch;
 import weka.classifiers.functions.SMO;
 import weka.classifiers.functions.supportVector.RBFKernel;
 import weka.core.Instances;
+import weka.core.SelectedTag;
 import weka.core.converters.ConverterUtils.DataSource;
-import java.io.PrintWriter;
-import java.util.Random;
 
 public class ParametroEkorketa {
 	
@@ -43,7 +48,6 @@ public class ParametroEkorketa {
             	double gamma=Math.pow(oinarria,exp1);
             	kernel.setGamma(gamma);
             	smo.setKernel(kernel);
-        		smo.buildClassifier(data);
         		Evaluation eval= new Evaluation(data);
         		eval.crossValidateModel(smo, data, 10, new Random(1));
 
@@ -81,6 +85,6 @@ public class ParametroEkorketa {
             }
             pw.println("BALIO MINIMOA: " + data.attribute(data.numAttributes()-1).value(min) + " -> " + counts[min] + "\n");
             return min;
-    }
+    }   
     	
 }

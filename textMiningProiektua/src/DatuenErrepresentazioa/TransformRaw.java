@@ -33,7 +33,6 @@ public class TransformRaw {
         
         else{
             
-        	File file = new File(args[1]);
             List<String> list = Arrays.asList(args);
             
             DataSource dataSource = new DataSource(args[0]);
@@ -44,7 +43,7 @@ public class TransformRaw {
             StringToWordVector filter = new StringToWordVector();	//Raw-tik bektore formatura
             filter.setInputFormat(data);   
             filter.setLowerCaseTokens(true);
-            filter.setDictionaryFileToSaveTo(file);
+            filter.setDictionaryFileToSaveTo(new File(args[1]));
             if (list.contains("-I") || list.contains("--tfidf")) filter.setIDFTransform(true); //tfidf aukera gehitzeko
             data = Filter.useFilter(data,filter);
             
@@ -61,10 +60,10 @@ public class TransformRaw {
 
             ArffSaver as = new ArffSaver();
             as.setInstances(data);
-            as.setFile(new File("/home/jorge/transformed.arff"));
+            as.setFile(new File("/home/jorge/transformed.arff")); //TODO hau aldatu behar da
             as.writeBatch();
             
-            System.out.println("holaquetal");
+            System.out.println("holaquetal");//hau kendu
         }
     }
 }

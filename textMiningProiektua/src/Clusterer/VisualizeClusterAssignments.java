@@ -1,12 +1,5 @@
 package Clusterer;
 
-import java.awt.Component;
-
-import javax.swing.JFrame;
-
-import weka.core.Instances;
-import weka.gui.visualize.PlotData2D;
-
 public class VisualizeClusterAssignments {
 		public static void main(String args[]) throws Exception {
 		     // train classifier
@@ -35,5 +28,4 @@ public class VisualizeClusterAssignments {
 		   }*/
 
 		}
-		//Visualize
 }
