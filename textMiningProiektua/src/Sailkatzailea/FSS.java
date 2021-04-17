@@ -39,7 +39,7 @@ public class FSS {
 			saver.setFile(new File(args[1]));
 			saver.writeBatch();
 			
-			PrintWriter pw = new PrintWriter(args[2]);
+			PrintWriter pw = new PrintWriter(args[2]);				//hiztegia gordetzeko
 			for (int i=0; i<filteredData.numAttributes()-1; i++) {
                 pw.println(filteredData.attribute(i).name());
             }
