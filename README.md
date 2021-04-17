@@ -2,7 +2,7 @@
 
 
 Erabakiak Hartzeko Euskarri Sistemak irakasgaiko proiektua. Testu meatzaritzaren inguruan zenbait funtzionalitate jorratzean datza.
-Horretarako java eta weka-ko liburutegiak erabili ditugu. (WIP)
+Horretarako java eta weka-ko liburutegiak erabili ditugu. (WIP) https://guides.github.com/features/mastering-markdown/
 
 Testu gordina arff formatu ulergarrira pasa:
 	-String-ak Bow edo idftf
