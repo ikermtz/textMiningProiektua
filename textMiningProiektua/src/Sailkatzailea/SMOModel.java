@@ -2,9 +2,10 @@ package Sailkatzailea;
 
 import java.io.PrintWriter;
 import java.util.Random;
-
+import Sailkatzailea.ParametroEkorketa;
 import weka.classifiers.evaluation.Evaluation;
 import weka.classifiers.functions.SMO;
+import weka.classifiers.functions.supportVector.RBFKernel;
 import weka.core.Instances;
 import weka.core.SerializationHelper;
 import weka.core.converters.ConverterUtils.DataSource;
@@ -16,19 +17,29 @@ public class SMOModel {
 	
 	public static void main(String[] args) throws Exception {
 		if (args.length==3) {
+			System.getProperty("user.dir");
 			
 			   DataSource source = new DataSource(args[0]);
 	           Instances data = source.getDataSet();
 	           data.setClassIndex(data.numAttributes()-1);
 	           
+	           String parametroak[] = new String[2];
+	           parametroak[0]=args[0];
+	           parametroak[1]=args[2];
+	           
+	           double[] parametro_optimoak = ParametroEkorketa.parametroekorketa(parametroak);
+	           double c = parametro_optimoak[0];
+	           double gamma = parametro_optimoak[1];
+	           RBFKernel kernel = new RBFKernel();
+	           kernel.setGamma(gamma);
+	           
 	           //Ebaluazio ez zintzoa
 	           SMO smoGuztiak= new SMO();
 	           //parametroak gehitu	  
-	           smoGuztiak.setC(1);
+	          
+	           smoGuztiak.setC(c);
+	           smoGuztiak.setKernel(kernel);
 	           smoGuztiak.buildClassifier(data);
-	           
-	           //Gorde modeloa entrenamendu multzo osoa erabiliz
-	           SerializationHelper.write(args[1], smoGuztiak);
 	           
 	           //HoldOut
 	           
@@ -51,13 +62,22 @@ public class SMOModel {
 	           remove1.setInvertSelection(true);
 	           Instances dev = Filter.useFilter(data, remove1);		//dev
 	           
-	           //SMO entrenatu train azpimultzoarekin
+	           //SMO entrenatu train azpimultzoarekin (holdout)
 	           SMO smo = new SMO();
-	           smoGuztiak.setC(1);					//parametroak gehitu
+	           smo.setC(c);					//parametroak gehitu
+	           smo.setKernel(kernel);
 	           smo.buildClassifier(train);
 	           
+	           //SMO crossvalidation
+	           SMO smocross = new SMO();
+	           smocross.setC(c);					//parametroak gehitu
+	           smocross.setKernel(kernel);
+
+	           //Gorde modeloa entrenamendu multzo osoa erabiliz
+	           SerializationHelper.write(args[1], smoGuztiak);
+	           
 	           //Ebaluaketak gorde
-	           PrintWriter pw = new PrintWriter(args[2]);	//ez zintzoa
+	           PrintWriter pw = new PrintWriter(args[2]+"SMOModel");	//ez zintzoa
 	           Evaluation eval1 = new Evaluation(data);
 	           eval1.evaluateModel(smoGuztiak, data);
 	           
@@ -65,7 +85,7 @@ public class SMOModel {
 	           eval2.evaluateModel(smo, dev);
 	           
 	           Evaluation eval3 = new Evaluation(data);		//crossvalidation
-	           eval3.crossValidateModel(smoGuztiak, data, 10, new Random(1));
+	           eval3.crossValidateModel(smocross, data, 10, new Random(1));
 	           
 	           pw.println("KALITATEAREN ESTIMAZIOA:");
 	           pw.println();

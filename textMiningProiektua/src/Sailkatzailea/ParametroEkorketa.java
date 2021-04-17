@@ -1,16 +1,12 @@
 package Sailkatzailea;
 
+import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Random;
-
-import com.sun.javadoc.Tag;
-
 import weka.classifiers.Evaluation;
-import weka.classifiers.bayes.net.search.global.GeneticSearch;
 import weka.classifiers.functions.SMO;
 import weka.classifiers.functions.supportVector.RBFKernel;
 import weka.core.Instances;
-import weka.core.SelectedTag;
 import weka.core.converters.ConverterUtils.DataSource;
 
 public class ParametroEkorketa {
@@ -18,15 +14,20 @@ public class ParametroEkorketa {
 	private static PrintWriter pw;
 	private static Instances data;
 	
-    public static void main(String[] args) throws Exception {
+	public static void main (String [] args) throws Exception{
+		parametroekorketa(args);
+	}
+	
+    public static double[] parametroekorketa(String[] args) throws Exception {
     	
-    	
-    	//Aldatu  behar dut, arff helbidea txarto sartzen deneko kasuan
+    	if (args.length==2) {
     	DataSource source = new DataSource(args[0]);
     	data = source.getDataSet();
         data.setClassIndex(data.numAttributes()-1);
     	double maximoa = 0.0;
-    	pw = new PrintWriter((args[1]));
+    	FileWriter filewriter = new FileWriter(args[1]+"ParametroEkorketa");
+        pw = new PrintWriter(filewriter);
+    	//pw = new PrintWriter(args[1]+"ParametroEkorketa");
     	pw.println();
     	pw.println("SMO parametro ekorketa");
     	pw.println("2 parametro optimizatuko ditugu:");
@@ -51,10 +52,6 @@ public class ParametroEkorketa {
         		Evaluation eval= new Evaluation(data);
         		eval.crossValidateModel(smo, data, 10, new Random(1));
 
-        		System.out.println(exp1);
-
-        		System.out.println(eval.fMeasure(i));
-
         		if (eval.fMeasure(i) > maximoa) {
         			maximoa = eval.fMeasure(i);
         			cmax=c;
@@ -70,6 +67,15 @@ public class ParametroEkorketa {
         pw.println(maximoa);
         pw.close();
         
+    	double[] parametroak = new double[2];
+    	parametroak[0] = cmax;
+        parametroak[1] = gammamax;
+        return parametroak;
+    	}
+    	else {
+    		System.out.println("2 parametro sartu behar dituzu!");
+    		return null;
+    	}
     }
     private static int klaseminoritarioa() throws Exception{
     	
@@ -81,9 +87,9 @@ public class ParametroEkorketa {
                 if(counts[min] > counts[j]) {
                 	min = j;
                 }
-                pw.println(data.attribute(data.numAttributes()-1).value(j) + " -> " + counts[j] + " | MAIZTASUNA -> " + (float)counts[j]/data.attributeStats(data.numAttributes()-1).totalCount);
+                pw.println(data.attribute(data.numAttributes()-1).value(j) + " -> " + counts[j] + " | Maiztasuna -> " + (float)counts[j]/data.attributeStats(data.numAttributes()-1).totalCount);
             }
-            pw.println("BALIO MINIMOA: " + data.attribute(data.numAttributes()-1).value(min) + " -> " + counts[min] + "\n");
+            pw.println("Balio minimoa: " + data.attribute(data.numAttributes()-1).value(min) + " -> " + counts[min] + "\n");
             return min;
     }   
     	
