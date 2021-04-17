@@ -1,0 +1,18 @@
+
+SMO parametro ekorketa
+2 parametro optimizatuko ditugu:
+1- C
+2- Kernel.gamma
+Ebaluazio metrika: Klase minoritarioaren fMeasure
+
+classReaction atributu nominala da eta hauek dira ezaugarriak:
+Yes -> 200 | Maiztasuna -> 0.5
+No -> 200 | Maiztasuna -> 0.5
+Balio minimoa: Yes -> 200
+
+C hoberena:
+0.001
+Gamma hoberena:
+1.0
+Klase minoritarioaren fMeasure hoberena:
+0.8551401869158879
