@@ -20,30 +20,14 @@ public class VisualizeClusterAssignments {
 			DataSource source = new DataSource(args[0]);
 			Instances data= source.getDataSet();
 			data.setClassIndex(data.numAttributes()-1);
-			
-			Classifier smo = new SMO();
-			Evaluation eval = new Evaluation(data);
-			eval.crossValidateModel(smo, data, 10, new Random(1));
-			
-			ThresholdCurve tc = new ThresholdCurve();
-			int classIndex = 0;
-			Instances result = tc.getCurve(eval.predictions(), classIndex);
-			
+	
 			// plot curve
 			ThresholdVisualizePanel vmc = new ThresholdVisualizePanel();
-			vmc.setROCString("(Area under ROC = " + ThresholdCurve.getROCArea(result) + ")");
-			vmc.setName(result.relationName());
-			PlotData2D tempd = new PlotData2D(result);
-			tempd.setPlotName(result.relationName());
+			vmc.setROCString("(Area under ROC = " + ThresholdCurve.getROCArea(data) + ")");
+			vmc.setName(data.relationName());
+			PlotData2D tempd = new PlotData2D(data);
 			tempd.addInstanceNumberAttribute();
-			
-			// specify which points are connected
-			boolean[] cp = new boolean[result.numInstances()];
-			for (int n = 1; n < cp.length; n++)
-				cp[n] = true;
-			tempd.setConnectPoints(cp);
 
-			// add plot
 			vmc.addPlot(tempd);
 			
 			// display curve
