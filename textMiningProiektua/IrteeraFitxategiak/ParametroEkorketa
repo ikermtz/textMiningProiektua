@@ -5,14 +5,14 @@ SMO parametro ekorketa
 2- Kernel.gamma
 Ebaluazio metrika: Klase minoritarioaren fMeasure
 
-classReaction atributu nominala da eta hauek dira ezaugarriak:
-Yes -> 200 | Maiztasuna -> 0.5
-No -> 200 | Maiztasuna -> 0.5
-Balio minimoa: Yes -> 200
+Class atributu nominala da eta hauek dira ezaugarriak:
+democrat -> 267 | Maiztasuna -> 0.6137931
+republican -> 168 | Maiztasuna -> 0.3862069
+Balio minimoa: republican -> 168
 
 C hoberena:
-0.001
+100.0
 Gamma hoberena:
-1.0
+0.01
 Klase minoritarioaren fMeasure hoberena:
-0.8551401869158879
+0.9552238805970149

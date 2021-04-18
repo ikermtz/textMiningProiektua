@@ -1,18 +1,15 @@
 package DatuenErrepresentazioa;
 
-import weka.core.Attribute;
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 import weka.core.Instances;
 import weka.core.converters.ArffSaver;
-import weka.core.converters.ConverterUtils.*;
+import weka.core.converters.ConverterUtils.DataSource;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.Reorder;
 import weka.filters.unsupervised.attribute.StringToWordVector;
 import weka.filters.unsupervised.instance.SparseToNonSparse;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.util.Arrays;
-import java.util.List;
 
 public class TransformRaw {
 	

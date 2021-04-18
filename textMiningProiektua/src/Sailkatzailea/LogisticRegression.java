@@ -1,20 +1,15 @@
 package Sailkatzailea;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
-
 import weka.classifiers.evaluation.Evaluation;
 import weka.classifiers.functions.Logistic;
 import weka.core.Instances;
+import weka.core.SerializationHelper;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.filters.Filter;
 import weka.filters.unsupervised.instance.Randomize;
 import weka.filters.unsupervised.instance.RemovePercentage;
-import weka.core.SerializationHelper;
 
 public class LogisticRegression {
 
@@ -29,9 +24,6 @@ public class LogisticRegression {
            //Ebaluazio ez zintzoa
            Logistic lrGuztiak= new Logistic();
            lrGuztiak.buildClassifier(data);
-           
-           //Gorde modeloa entrenamendu multzo osoa erabiliz
-           SerializationHelper.write(args[1], lrGuztiak);
            
            //HoldOut
            
@@ -54,12 +46,18 @@ public class LogisticRegression {
            remove1.setInvertSelection(true);
            Instances dev = Filter.useFilter(data, remove1);		//dev
            
-           //logistic regression entrenatu train azpimultzoarekin
+           //logistic regression entrenatu train azpimultzoarekin (holdout)
            Logistic lr = new Logistic();
            lr.buildClassifier(train);
            
+           //logistic regression (crossvalidation)
+           Logistic lrcross = new Logistic();
+           
+           //Gorde modeloa entrenamendu multzo osoa erabiliz
+           SerializationHelper.write(args[1], lrGuztiak);
+           
            //Ebaluaketak gorde
-           PrintWriter pw = new PrintWriter(args[2]);	//ez zintzoa
+           PrintWriter pw = new PrintWriter(args[2]+"LogisticRegression");	//ez zintzoa
            Evaluation eval1 = new Evaluation(data);
            eval1.evaluateModel(lrGuztiak, data);
            
@@ -67,7 +65,7 @@ public class LogisticRegression {
            eval2.evaluateModel(lr, dev);
            
            Evaluation eval3 = new Evaluation(data);		//crossvalidation
-           eval3.crossValidateModel(lrGuztiak, data, 10, new Random(1));
+           eval3.crossValidateModel(lrcross, data, 10, new Random(1));
            
            pw.println("KALITATEAREN ESTIMAZIOA:");
            pw.println();
@@ -97,7 +95,7 @@ public class LogisticRegression {
            
        }
        else {
-    	   System.out.println("java -jar LogisticRegression.jar trainPath.arff LRpath.model Kalitatea.txt");
+    	   System.out.println("java -jar LogisticRegression.jar trainPath.arff LRpath.model irteerahelbidea");
        }
 
 	}

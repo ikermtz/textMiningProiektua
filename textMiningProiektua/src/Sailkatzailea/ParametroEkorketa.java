@@ -74,6 +74,7 @@ public class ParametroEkorketa {
     	}
     	else {
     		System.out.println("2 parametro sartu behar dituzu!");
+	    	System.out.println("java -jar ParametroEkorketa.jar data.arff irteerahelbidea");
     		return null;
     	}
     }

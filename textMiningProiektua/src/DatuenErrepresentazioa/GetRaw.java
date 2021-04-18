@@ -1,12 +1,9 @@
 package DatuenErrepresentazioa;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-
 import weka.core.Instances;
 import weka.core.converters.TextDirectoryLoader;
 

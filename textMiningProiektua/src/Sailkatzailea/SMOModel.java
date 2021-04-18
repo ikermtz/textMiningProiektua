@@ -17,7 +17,6 @@ public class SMOModel {
 	
 	public static void main(String[] args) throws Exception {
 		if (args.length==3) {
-			System.getProperty("user.dir");
 			
 			   DataSource source = new DataSource(args[0]);
 	           Instances data = source.getDataSet();
@@ -115,7 +114,7 @@ public class SMOModel {
 	           
 	       }
 	       else {
-	    	   System.out.println("java -jar SMO.jar trainPath.arff smopath.model Kalitatea.txt");
+	    	   System.out.println("java -jar SMO.jar trainPath.arff smopath.model irteerahelbidea");
 	       }
 
 	}

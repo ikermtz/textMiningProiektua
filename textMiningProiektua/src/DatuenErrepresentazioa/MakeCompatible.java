@@ -1,10 +1,6 @@
 package DatuenErrepresentazioa;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-
-import weka.core.Attribute;
 import weka.core.Instances;
 import weka.core.converters.ArffSaver;
 import weka.core.converters.CSVLoader;
