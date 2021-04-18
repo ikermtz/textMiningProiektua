@@ -13,7 +13,7 @@ import weka.core.converters.ConverterUtils.DataSource;
 import weka.gui.visualize.PlotData2D;
 import weka.gui.visualize.ThresholdVisualizePanel;
 
-public class VisualizeClusterAssignments {
+public class VisualizeInstances {
 	
 		public static void main(String args[]) throws Exception {
 			
