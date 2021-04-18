@@ -1,4 +1,4 @@
-package Clusterer;
+package Visualizer;
 
 import java.util.Random;
 
