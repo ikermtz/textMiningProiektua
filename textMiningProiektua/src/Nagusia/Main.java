@@ -85,7 +85,7 @@ public class Main {
 	 
 	 private static void karpetaSortu(String path) {
 		 File file = new File(path);
-	      //Creating the directory
+
 	      boolean bool = file.mkdir();
 	      if(bool){
 	         System.out.println("Direktorioa ongi sortu da");
