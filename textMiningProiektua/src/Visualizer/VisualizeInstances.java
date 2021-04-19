@@ -1,13 +1,8 @@
 package Visualizer;
 
-import java.util.Random;
-
 import javax.swing.JFrame;
 
-import weka.classifiers.Classifier;
-import weka.classifiers.evaluation.Evaluation;
 import weka.classifiers.evaluation.ThresholdCurve;
-import weka.classifiers.functions.SMO;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.gui.visualize.PlotData2D;
