@@ -13,8 +13,18 @@ import weka.filters.Filter;
 import weka.filters.supervised.attribute.AttributeSelection;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FSS.
+ */
 public class FSS {
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 * @throws Exception the exception
+	 */
 	public static void main(String[] args) throws Exception{
 		if (args.length==3) {
 			DataSource sauce = new DataSource(args[0]);

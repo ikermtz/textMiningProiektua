@@ -9,8 +9,18 @@ import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.FixedDictionaryStringToWordVector;
 import weka.filters.unsupervised.attribute.Reorder;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MakeCompatible.
+ */
 public class MakeCompatible {
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 * @throws Exception the exception
+	 */
 	public static void main(String[] args) throws Exception {
 		
 		if(args.length  !=3) {
@@ -70,6 +80,12 @@ public class MakeCompatible {
 		}		
 	}
 	
+	/**
+	 * Convert CS vto arff.
+	 *
+	 * @param filename the filename
+	 * @throws Exception the exception
+	 */
 	public static void convertCSVtoArff(String filename) throws Exception {
 
 		// CSV-a kargatu

@@ -13,8 +13,18 @@ import weka.core.converters.ConverterUtils.DataSource;
 import weka.gui.visualize.PlotData2D;
 import weka.gui.visualize.ThresholdVisualizePanel;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class VisualizeInstances.
+ */
 public class VisualizeInstances {
 	
+		/**
+		 * The main method.
+		 *
+		 * @param args the arguments
+		 * @throws Exception the exception
+		 */
 		public static void main(String args[]) throws Exception {
 			
 			DataSource source = new DataSource(args[0]);

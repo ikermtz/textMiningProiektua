@@ -14,6 +14,10 @@ public class GetRaw {
 	 * 
 	 * 	1. Testuak(instantziak) dauden direktorioa
 	 * 	2. Ateratzen den Arff-aren path-a
+	 *
+	 * @param args the arguments
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws InterruptedException the interrupted exception
 	 */
 	
 	public static void main(String[] args) throws IOException, InterruptedException {
@@ -52,12 +56,12 @@ public class GetRaw {
 	}
 	
 	 /**
-	  * Testua Arff formatura pasa
-	  *
-	  * @param directory Testuak dauden direktorioa
-	  * @param target Irteerako arff fitxategia non gordeko den
-	  
-	  */
+ 	 * Testua Arff formatura pasa.
+ 	 *
+ 	 * @param directory Testuak dauden direktorioa
+ 	 * @param target Irteerako arff fitxategia non gordeko den
+ 	 * @throws IOException Signals that an I/O exception has occurred.
+ 	 */
 	public static void TextToArffConverter(String directory, String target) throws IOException {
 
 		TextDirectoryLoader loader = new TextDirectoryLoader();

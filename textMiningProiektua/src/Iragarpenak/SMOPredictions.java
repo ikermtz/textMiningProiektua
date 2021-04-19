@@ -14,6 +14,12 @@ import java.io.FileWriter;
 
 public class SMOPredictions {
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 * @throws Exception the exception
+	 */
 	public static void main (String[] args) throws Exception {
 		
         if (args.length!=3) {

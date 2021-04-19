@@ -11,8 +11,18 @@ import weka.filters.Filter;
 import weka.filters.unsupervised.instance.Randomize;
 import weka.filters.unsupervised.instance.RemovePercentage;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LogisticRegression.
+ */
 public class LogisticRegression {
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 * @throws Exception the exception
+	 */
 	public static void main(String[] args) throws Exception {        
        
 		if (args.length==3) {

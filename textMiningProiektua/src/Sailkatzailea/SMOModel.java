@@ -13,8 +13,18 @@ import weka.filters.Filter;
 import weka.filters.unsupervised.instance.Randomize;
 import weka.filters.unsupervised.instance.RemovePercentage;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SMOModel.
+ */
 public class SMOModel {
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 * @throws Exception the exception
+	 */
 	public static void main(String[] args) throws Exception {
 		if (args.length==3) {
 			

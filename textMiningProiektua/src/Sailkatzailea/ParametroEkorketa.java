@@ -9,15 +9,35 @@ import weka.classifiers.functions.supportVector.RBFKernel;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ParametroEkorketa.
+ */
 public class ParametroEkorketa {
 	
+	/** The pw. */
 	private static PrintWriter pw;
+	
+	/** The data. */
 	private static Instances data;
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 * @throws Exception the exception
+	 */
 	public static void main (String [] args) throws Exception{
 		parametroekorketa(args);
 	}
 	
+    /**
+     * Parametroekorketa.
+     *
+     * @param args the args
+     * @return the double[]
+     * @throws Exception the exception
+     */
     public static double[] parametroekorketa(String[] args) throws Exception {
     	
     	if (args.length==2) {
@@ -78,6 +98,13 @@ public class ParametroEkorketa {
     		return null;
     	}
     }
+    
+    /**
+     * Klaseminoritarioa.
+     *
+     * @return the int
+     * @throws Exception the exception
+     */
     private static int klaseminoritarioa() throws Exception{
     	
     		//Klase minoritarioaren indizea itzultzen du
