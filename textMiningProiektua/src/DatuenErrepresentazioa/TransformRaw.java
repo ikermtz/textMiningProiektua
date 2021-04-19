@@ -46,7 +46,7 @@ public class TransformRaw {
             StringToWordVector filter = new StringToWordVector();	//Raw-tik bektore formatura
             filter.setInputFormat(data);   
             filter.setLowerCaseTokens(true);
-            filter.setDictionaryFileToSaveTo(new File(args[1]));
+            filter.setDictionaryFileToSaveTo(new File(args[1]));	//hiztegia ez da behar hemen lortzea
             if (list.contains("-I") || list.contains("--tfidf")) filter.setIDFTransform(true); //tfidf aukera gehitzeko
             data = Filter.useFilter(data,filter);
             
