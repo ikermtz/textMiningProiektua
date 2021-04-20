@@ -29,10 +29,10 @@ public class TransformRaw {
         if (args.length == 0) {
             System.out.println("");
             System.out.println("");
-            System.out.println("java -jar TransformRaw.jar rawData.arff dictionary -I/--tfidf -N/--nonsparse ");
+            System.out.println("java -jar TransformRaw.jar rawData.arff dictionary -I/--tfidf -N/--nonsparse transformed.arff");
         }
         
-        else if(args.length<2 || args.length>4) System.out.println("Sintaxia txarto dago. Laguntza jasotzeko argumenturik ez erabili");
+        else if(args.length<3 || args.length>5) System.out.println("Sintaxia txarto dago. Laguntza jasotzeko argumenturik ez erabili");
         
         else{
             
@@ -63,10 +63,9 @@ public class TransformRaw {
 
             ArffSaver as = new ArffSaver();
             as.setInstances(data);
-            as.setFile(new File("/home/jorge/transformed.arff")); //TODO hau aldatu behar da
+            as.setFile(new File(args[4])); //TODO hau aldatu behar da
             as.writeBatch();
             
-            System.out.println("holaquetal");//hau kendu
         }
     }
 }
