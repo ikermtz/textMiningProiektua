@@ -191,11 +191,11 @@ public class Main {
 	 }
 	 
 	 private static void aukera6() throws Exception {
-		 System.out.println("Gamma parametroa zehaztu (iradokizuna: x.y)");
+		 System.out.println("Gamma parametroa zehaztu");
 		 String gamma = sc.next();
-		 System.out.println("C parametroa zehaztu (iradokizuna: x.y)");
+		 System.out.println("C parametroa zehaztu");
 		 String cost = sc.next();
-		 String [] parametroak = {workspace+"/fss.arff",workspace+"/SMO.model", workspace+"/TestPredictionsSVM.txt",gamma,cost};
+		 String [] parametroak = {workspace+"/trainBektoreak.arff",workspace+"/SMO.model", workspace+"/TestPredictionsSVM.txt",gamma,cost};
 		 
 		 SMOModel.main(parametroak);
 	 }
