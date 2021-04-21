@@ -37,7 +37,6 @@ public class ParametroEkorketa {
     	double maximoa = 0.0;
     	FileWriter filewriter = new FileWriter(args[1]);
         pw = new PrintWriter(filewriter);
-    	//pw = new PrintWriter(args[1]+"ParametroEkorketa");
     	pw.println();
     	pw.println("SMO parametro ekorketa");
     	pw.println("2 parametro optimizatuko ditugu:");

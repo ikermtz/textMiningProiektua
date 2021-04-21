@@ -36,7 +36,7 @@ public class FSS {
 			
 			Ranker ranker = new Ranker();		//atributuak rankeatzeko
 			if (args.length==4 && Integer.parseInt(args[3])<=300) ranker.setNumToSelect(Integer.parseInt(args[3]));			//atributu kopurua limitatzeko
-			ranker.setThreshold(0.1);			//balio hau aldatzen probatu
+			ranker.setThreshold(0.1);			
 			
 			AttributeSelection as = new AttributeSelection();
 			as.setInputFormat(data);

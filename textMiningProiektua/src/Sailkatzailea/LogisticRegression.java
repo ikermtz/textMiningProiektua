@@ -46,7 +46,7 @@ public class LogisticRegression {
            }
            Evaluation eval2=holdOutEgin(bestRandomSeed, data);
            
-           //logistic regression (crossvalidation)
+           //logistic regression (cross-validation)
            Logistic lrcross = new Logistic();
            
            
@@ -57,7 +57,7 @@ public class LogisticRegression {
            
           
            
-           Evaluation eval3 = new Evaluation(data);		//crossvalidation
+           Evaluation eval3 = new Evaluation(data);		//cross-validation
            eval3.crossValidateModel(lrcross, data, 10, new Random(1));
            
            pw.println("KALITATEAREN ESTIMAZIOA:");
@@ -78,7 +78,7 @@ public class LogisticRegression {
            pw.println();
            pw.println("---------------------------------------------");
            pw.println();
-           pw.println("10-fold cross validation");
+           pw.println("10-fold cross-validation");
            pw.println(eval3.toSummaryString());
            pw.println(eval3.toClassDetailsString());
            pw.println(eval3.toMatrixString());

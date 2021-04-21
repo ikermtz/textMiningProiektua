@@ -55,7 +55,7 @@ public class SMOModel {
 	           }
 	           Evaluation eval2 = holdOutEgin(bestRandomSeed, data, kernel, c);
 	           
-	           //SMO crossvalidation
+	           //SMO cross-validation
 	           SMO smocross = new SMO();
 	           smocross.setC(c);					//parametroak gehitu
 	           smocross.setKernel(kernel);
@@ -65,7 +65,7 @@ public class SMOModel {
 	           Evaluation eval1 = new Evaluation(data);
 	           eval1.evaluateModel(smoGuztiak, data);
 	           
-	           Evaluation eval3 = new Evaluation(data);		//crossvalidation
+	           Evaluation eval3 = new Evaluation(data);		//cross-validation
 	           eval3.crossValidateModel(smocross, data, 10, new Random(1));
 	           
 	           pw.println("KALITATEAREN ESTIMAZIOA:");
@@ -86,7 +86,7 @@ public class SMOModel {
 	           pw.println();
 	           pw.println("---------------------------------------------");
 	           pw.println();
-	           pw.println("10-fold cross validation");
+	           pw.println("10-fold cross-validation");
 	           pw.println(eval3.toSummaryString());
 	           pw.println(eval3.toClassDetailsString());
 	           pw.println(eval3.toMatrixString());
