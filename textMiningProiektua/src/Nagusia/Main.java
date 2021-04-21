@@ -161,7 +161,7 @@ public class Main {
 		 //for (String x : parametroak) System.out.println(x);	//parametroak ikusteko
 		
 		 TransformRaw.main(parametroak);
-		 System.out.println("trainBektoreak.arff eta rawDictionary.txt gorde daira "+workspace+"-n");
+		 System.out.println("trainBektoreak.arff eta rawDictionary.txt gorde dira "+workspace+"-n");
 	 }
 	 
 	 private static void aukera3() throws Exception {
