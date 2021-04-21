@@ -138,10 +138,17 @@ public class Main {
 		 System.out.println("\nSartu testu fitxategiak dauden direktorioaren path-a");
 		 String directorypath = sc.next();
 		 String [] parametroak = {directorypath,workspace};
-		 if (directorypath.contains(".txt")) parametroak[1]+="/testGordina.arff";
-		 else parametroak[1]+="/trainGordina.arff";
+		 if (directorypath.contains(".txt")) { 
+			 String hola = "/testGordina.arff";
+			 parametroak[1]+= hola;
+		 }
+		 else {
+			 String hola = "/trainGordina.arff";
+			 parametroak[1]+=hola;
+		 }
 		 
 		 GetRaw.main(parametroak);
+		 System.out.println(hola+" gorde da "+ workspace+"-n");
 	 }
 	 
 	 private static void aukera2() throws Exception {
@@ -153,6 +160,7 @@ public class Main {
 		 //for (String x : parametroak) System.out.println(x);	//parametroak ikusteko
 		
 		 TransformRaw.main(parametroak);
+		 System.out.println("trainBektoreak.arff eta rawDictionary.txt gorde daira "+workspace+"-n");
 	 }
 	 
 	 private static void aukera3() throws Exception {
@@ -168,6 +176,7 @@ public class Main {
 			 
 			 FSS.main(parametroak);
 			 } 
+		 System.out.println("dictionary.arff eta fss.arff gorde dira "+workspace+"-n");
 	 }
 	 
 	/* private static void aukera3() throws Exception {
@@ -182,12 +191,14 @@ public class Main {
 		 String [] parametroak = {workspace+"/fss.arff",workspace+"/parametroEkorketa.txt"};
 		 
 		 ParametroEkorketa.main(parametroak);
+		 System.out.println("parametroEkorketa.txt gorde da "+workspace+"-n");
 	 }
 	 
 	 private static void aukera5() throws Exception {
 		 String [] parametroak = {workspace+"/fss.arff",workspace+"/logisticRegression.model", workspace+"/TestPredictionsLogReg.txt"};
 		 
 		 LogisticRegression.main(parametroak);
+		 System.out.println("logisticRegression.model eta TestPredictionsLogReg.txt gorde dira "+workspace+"-n");
 	 }
 	 
 	 private static void aukera6() throws Exception {
@@ -198,18 +209,21 @@ public class Main {
 		 String [] parametroak = {workspace+"/fss.arff",workspace+"/SMO.model", workspace+"/TestPredictionsSVM.txt",gamma,cost};
 		 
 		 SMOModel.main(parametroak);
+		 System.out.println("SMO.model TestPredictionsSVM.txt gorde dira "+workspace+"-n");
 	 }
 	 
 	 private static void aukera7() throws Exception {
 		 String [] parametroak = {workspace+"/testGordina.arff",workspace+"/dictionary.txt", workspace+"/testBektoreak.arff"}; //makecompatible: tfidf esta, y nonsparse?
 		 
 		 MakeCompatible.main(parametroak);
+		 System.out.println("testBektoreak.arff gorde da "+workspace+"-n");
 	 }
 	 
 	 private static void aukera8() throws Exception {
 		 String [] parametroak = {workspace+"/testBektoreak.arff",workspace+"/SMO.model", workspace+"/predictions.txt"};
 		 
 		 SMOPredictions.main(parametroak);
+		 System.out.println("predictions.txt gorde da "+workspace+"-n");
 	 }
 	 
 	 private static void aukera9() throws Exception {
