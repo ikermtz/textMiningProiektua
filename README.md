@@ -23,4 +23,6 @@ Horretarako java eta weka-ko liburutegiak erabili ditugu.
 	-Ebaluazio ez zintzoa, 100 hold-out, 10-fold cross validation.
 
 -Iragarpenak
+
+-Visualize instances
 	
