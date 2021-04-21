@@ -39,7 +39,8 @@ public class SMOPredictions {
             PrintWriter pw = new PrintWriter (args[2]);
             pw.println("Iragarpenak: ");
             pw.println();
-            pw.println("Nº"+"\t"+"Erreala"+"\t"+"Iragarria"+"\n");
+            pw.println("Nº\tReal\t\tPredicted");
+            pw.println("\n");
             for(int i=0; i< eval.predictions().size();i+=1){
                 double iragarria = eval.predictions().get(i).predicted();
                 pw.println((i+1)+"\t"+data.instance(i).stringValue(data.classIndex())+"\t"+data.classAttribute().value((int)iragarria)+"\n");
