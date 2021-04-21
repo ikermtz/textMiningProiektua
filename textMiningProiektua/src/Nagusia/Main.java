@@ -32,7 +32,7 @@ public class Main {
 	 * @throws Exception the exception
 	 */
 	public static void main (String args[]) throws Exception{
-		String workspace = System.getProperty("user.home")+"/text_mining";//añadir /?
+		//String workspace = System.getProperty("user.home")+"/text_mining";//añadir /?
 		
 		if (args.length != 1) {
 			System.out.println("Defektuzko direktorioa erabiliko da (sortuko da ez existitzekotan): "+ workspace);
@@ -137,9 +137,9 @@ public class Main {
 	 private static void aukera1() throws IOException, InterruptedException {
 		 System.out.println("\nSartu testu fitxategiak dauden direktorioaren path-a");
 		 String directorypath = sc.next();
-		 String [] parametroak = {directorypath,workspace+""};
-		 if (directorypath.contains(".txt")) parametroak[1]="trainGordina.arff";
-		 else parametroak[1]="testGordina.arff";
+		 String [] parametroak = {directorypath,workspace};
+		 if (directorypath.contains(".txt")) parametroak[1]+="/testGordina.arff";
+		 else parametroak[1]+="/trainGordina.arff";
 		 
 		 GetRaw.main(parametroak);
 	 }
