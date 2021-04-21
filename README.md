@@ -6,11 +6,11 @@ Horretarako java eta weka-ko liburutegiak erabili ditugu.
 
 -Testu gordina arff formatu ulergarrira pasa:
 
-	-String-ak Bow edo idftf
+	-String-ak Bow edo idftf.
 	
 -Atributu Hautapena
 
-	-AttributeSelection erabilita
+	-AttributeSelection erabilita.
 	
 -Sailkapena
 
@@ -22,5 +22,5 @@ Horretarako java eta weka-ko liburutegiak erabili ditugu.
 
 	-Ebaluazio ez zintzoa, 100 hold-out, 10-fold cross validation.
 
--Iragarpenak.
+-Iragarpenak
 	
