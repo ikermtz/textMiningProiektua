@@ -77,7 +77,7 @@ public class ParametroEkorketa {
         pw.close();
     	}
     	else {
-    		System.out.println(args + " parametro sartu dituzu");
+    		System.out.println(args.length + " parametro sartu dituzu");
     		System.out.println("2 parametro sartu behar dituzu!");
 	    	System.out.println("java -jar ParametroEkorketa.jar data.arff parametroekorketa.txt");
     	}

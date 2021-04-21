@@ -98,7 +98,7 @@ public class SMOModel {
 	           
 	       }
 	       else {
-	    	   System.out.println(args + " parametro sartu dituzu");
+	    	   System.out.println(args.length + " parametro sartu dituzu");
 	    	   System.out.println("java -jar SMO.jar trainPath.arff smopath.model kalitatea.txt gamma cost");
 	       }
 

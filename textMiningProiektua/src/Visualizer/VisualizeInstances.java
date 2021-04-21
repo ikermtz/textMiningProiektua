@@ -44,7 +44,7 @@ public class VisualizeInstances {
 			frameRoc.setVisible(true);
 			}
 			else {
-		    	   System.out.println(args + " parametro sartu dituzu");
+		    	   System.out.println(args.length + " parametro sartu dituzu");
 		    	   System.out.println("java -jar Visualize.jar data.arff");
 			}
 	}

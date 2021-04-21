@@ -29,7 +29,7 @@ public class TransformRaw {
         if (args.length == 0) {
             System.out.println("");
             System.out.println("");
-	    	System.out.println(args + " parametro sartu dituzu");
+	    	System.out.println(args.length + " parametro sartu dituzu");
             System.out.println("java -jar TransformRaw.jar rawData.arff dictionary -I/--tfidf -N/--nonsparse transformed.arff");
         }
         
@@ -64,7 +64,7 @@ public class TransformRaw {
 
             ArffSaver as = new ArffSaver();
             as.setInstances(data);
-            as.setFile(new File(args[4])); //TODO hau aldatu behar da
+            as.setFile(new File(args[4]));
             as.writeBatch();
             
         }
