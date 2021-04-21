@@ -2,7 +2,6 @@ package Sailkatzailea;
 
 import java.io.PrintWriter;
 import java.util.Random;
-import Sailkatzailea.ParametroEkorketa;
 import weka.classifiers.evaluation.Evaluation;
 import weka.classifiers.functions.SMO;
 import weka.classifiers.functions.supportVector.RBFKernel;
@@ -99,7 +98,8 @@ public class SMOModel {
 	           
 	       }
 	       else {
-	    	   System.out.println("java -jar SMO.jar trainPath.arff smopath.model irteerahelbidea gamma cost");
+	    	   System.out.println(args + " parametro sartu dituzu");
+	    	   System.out.println("java -jar SMO.jar trainPath.arff smopath.model kalitatea.txt gamma cost");
 	       }
 
 	}

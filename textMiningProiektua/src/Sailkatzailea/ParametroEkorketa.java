@@ -35,7 +35,7 @@ public class ParametroEkorketa {
     	data = source.getDataSet();
         data.setClassIndex(data.numAttributes()-1);
     	double maximoa = 0.0;
-    	FileWriter filewriter = new FileWriter(args[1]+"ParametroEkorketa");
+    	FileWriter filewriter = new FileWriter(args[1]);
         pw = new PrintWriter(filewriter);
     	//pw = new PrintWriter(args[1]+"ParametroEkorketa");
     	pw.println();
@@ -78,8 +78,9 @@ public class ParametroEkorketa {
         pw.close();
     	}
     	else {
+    		System.out.println(args + " parametro sartu dituzu");
     		System.out.println("2 parametro sartu behar dituzu!");
-	    	System.out.println("java -jar ParametroEkorketa.jar data.arff irteerahelbidea");
+	    	System.out.println("java -jar ParametroEkorketa.jar data.arff parametroekorketa.txt");
     	}
     }
     

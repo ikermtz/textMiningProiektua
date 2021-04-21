@@ -22,6 +22,7 @@ public class VisualizeInstances {
 		 */
 		public static void main(String args[]) throws Exception {
 			
+			if (args.length==1) {
 			DataSource source = new DataSource(args[0]);
 			Instances data= source.getDataSet();
 			data.setClassIndex(data.numAttributes()-1);
@@ -42,5 +43,11 @@ public class VisualizeInstances {
 			frameRoc.getContentPane().add(vmc);
 			frameRoc.setVisible(true);
 			}
+			else {
+		    	   System.out.println(args + " parametro sartu dituzu");
+		    	   System.out.println("java -jar Visualize.jar data.arff");
+			}
+	}
 }
+
 

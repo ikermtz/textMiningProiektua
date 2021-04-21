@@ -29,6 +29,7 @@ public class TransformRaw {
         if (args.length == 0) {
             System.out.println("");
             System.out.println("");
+	    	System.out.println(args + " parametro sartu dituzu");
             System.out.println("java -jar TransformRaw.jar rawData.arff dictionary -I/--tfidf -N/--nonsparse transformed.arff");
         }
         

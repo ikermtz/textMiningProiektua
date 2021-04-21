@@ -25,6 +25,7 @@ public class MakeCompatible {
 		
 		if(args.length  !=3) {
 			System.out.println("Ez duzu arguments atala behar bezala bete!");
+	    	System.out.println(args + " parametro sartu dituzu");
 			System.out.println("java -jar test.arff hiztegia.txt emaitza.arff");
 		}
 		else{

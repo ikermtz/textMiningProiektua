@@ -91,7 +91,8 @@ public class LogisticRegression {
            
        }
        else {
-    	   System.out.println("java -jar LogisticRegression.jar trainPath.arff LRpath.model irteerahelbidea");
+    	   System.out.println(args + " parametro sartu dituzu");
+    	   System.out.println("java -jar LogisticRegression.jar trainPath.arff LRpath.model kalitatea.txt");
        }
 
 	}
