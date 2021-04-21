@@ -39,16 +39,12 @@ public class SMOPredictions {
             PrintWriter pw = new PrintWriter (args[2]);
             pw.println("Iragarpenak: ");
             pw.println();
-            
+            pw.println("Nº"+"\t"+"Erreala"+"\t"+"Iragarria"+"\n");
             for(int i=0; i< eval.predictions().size();i+=1){
-                double predicted = eval.predictions().get(i).predicted();
-                pw.println((i+1)+"\t"+data.instance(i).stringValue(data.classIndex())+"\t"+data.classAttribute().value((int)predicted)+"\n");
+                double iragarria = eval.predictions().get(i).predicted();
+                pw.println((i+1)+"\t"+data.instance(i).stringValue(data.classIndex())+"\t"+data.classAttribute().value((int)iragarria)+"\n");
             }
             
-            pw.println("\n"+eval.toClassDetailsString());
-            pw.println("\n"+eval.toSummaryString());
-            pw.println("\n"+eval.toMatrixString());
-
             long Hasiera = System.currentTimeMillis();       
             try{
                 Thread.sleep(1000);
