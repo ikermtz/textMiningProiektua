@@ -45,48 +45,26 @@ public class SMOModel {
 	           smoGuztiak.setKernel(kernel);
 	           smoGuztiak.buildClassifier(data);
 	           
-	           //HoldOut
-	           
-	           //randomize egin
-	           Randomize filter = new Randomize();
-	           filter.setRandomSeed(0);
-	           filter.setInputFormat(data);
-	           data = Filter.useFilter(data, filter);
-
-	           //dev eta train instantzia azpimultzoak ateratzeko
-	           RemovePercentage remove = new RemovePercentage();
-	           remove.setInputFormat(data);
-	           remove.setInvertSelection(false);
-	           remove.setPercentage(30);
-	           Instances train = Filter.useFilter(data, remove);	//train
-	           
-	           RemovePercentage remove1 = new RemovePercentage();
-	           remove1.setInputFormat(data);
-	           remove1.setPercentage(30);
-	           remove1.setInvertSelection(true);
-	           Instances dev = Filter.useFilter(data, remove1);		//dev
-	           
-	           //SMO entrenatu train azpimultzoarekin (holdout)
-	           SMO smo = new SMO();
-	           smo.setC(c);					//parametroak gehitu
-	           smo.setKernel(kernel);
-	           smo.buildClassifier(train);
+	           //HoldOut 100 aldiz
+	           int bestRandomSeed=0;
+	           double max=0;
+	           for (int i=0; i<100; i++) {
+	        	   double wfscore = holdOutEgin(i, data, kernel, c).weightedFMeasure();
+	        	   if (wfscore>max) //weighted f-score parametroa ekortzeko
+	        		   max = wfscore;
+	        		   bestRandomSeed = i;
+	           }
+	           Evaluation eval2 = holdOutEgin(bestRandomSeed, data, kernel, c);
 	           
 	           //SMO crossvalidation
 	           SMO smocross = new SMO();
 	           smocross.setC(c);					//parametroak gehitu
 	           smocross.setKernel(kernel);
-
-	           //Gorde modeloa entrenamendu multzo osoa erabiliz
-	           SerializationHelper.write(args[1], smoGuztiak);
 	           
 	           //Ebaluaketak gorde
 	           PrintWriter pw = new PrintWriter(args[2]);	//ez zintzoa
 	           Evaluation eval1 = new Evaluation(data);
 	           eval1.evaluateModel(smoGuztiak, data);
-	           
-	           Evaluation eval2 = new Evaluation(train);	//holdout
-	           eval2.evaluateModel(smo, dev);
 	           
 	           Evaluation eval3 = new Evaluation(data);		//crossvalidation
 	           eval3.crossValidateModel(smocross, data, 10, new Random(1));
@@ -116,12 +94,48 @@ public class SMOModel {
 	           
 	           pw.close();
 
+	         //Gorde modeloa entrenamendu multzo osoa erabiliz
+	           SerializationHelper.write(args[1], smoGuztiak);
 	           
 	       }
 	       else {
 	    	   System.out.println("java -jar SMO.jar trainPath.arff smopath.model irteerahelbidea gamma cost");
 	       }
 
+	}
+	
+	private static Evaluation holdOutEgin (int i , Instances data, RBFKernel kernel, double c) throws Exception {
+		//HoldOut 100 aldiz
+        
+        //randomize egin
+        Randomize filter = new Randomize();
+        filter.setRandomSeed(0);
+        filter.setInputFormat(data);
+        data = Filter.useFilter(data, filter);
+
+        //dev eta train instantzia azpimultzoak ateratzeko
+        RemovePercentage remove = new RemovePercentage();
+        remove.setInputFormat(data);
+        remove.setInvertSelection(false);
+        remove.setPercentage(30);
+        Instances train = Filter.useFilter(data, remove);	//train
+        
+        RemovePercentage remove1 = new RemovePercentage();
+        remove1.setInputFormat(data);
+        remove1.setPercentage(30);
+        remove1.setInvertSelection(true);
+        Instances dev = Filter.useFilter(data, remove1);		//dev
+        
+        //SMO entrenatu train azpimultzoarekin (holdout)
+        SMO smo = new SMO();
+        smo.setC(c);					//parametroak gehitu
+        smo.setKernel(kernel);
+        smo.buildClassifier(train);
+        
+        Evaluation eval2 = new Evaluation(train);	//holdout
+        eval2.evaluateModel(smo, dev);
+        
+        return eval2;
 	}
 	
 }

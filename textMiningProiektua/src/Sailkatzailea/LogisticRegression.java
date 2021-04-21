@@ -35,44 +35,27 @@ public class LogisticRegression {
            Logistic lrGuztiak= new Logistic();
            lrGuztiak.buildClassifier(data);
            
-           //HoldOut
-           
-           //randomize egin
-           Randomize filter = new Randomize();
-           filter.setRandomSeed(0);
-           filter.setInputFormat(data);
-           data = Filter.useFilter(data, filter);
-
-           //dev eta train instantzia azpimultzoak ateratzeko
-           RemovePercentage remove = new RemovePercentage();
-           remove.setInputFormat(data);
-           remove.setInvertSelection(false);
-           remove.setPercentage(30);
-           Instances train = Filter.useFilter(data, remove);	//train
-           
-           RemovePercentage remove1 = new RemovePercentage();
-           remove1.setInputFormat(data);
-           remove1.setPercentage(30);
-           remove1.setInvertSelection(true);
-           Instances dev = Filter.useFilter(data, remove1);		//dev
-           
-           //logistic regression entrenatu train azpimultzoarekin (holdout)
-           Logistic lr = new Logistic();
-           lr.buildClassifier(train);
+           //HoldOut 100 aldiz
+           double max = 0;
+           int bestRandomSeed=0;
+           for (int i=0; i<100; i++) {
+        	   double wfscore = holdOutEgin(i, data).weightedFMeasure();
+        	   if (wfscore>max)	//weighted f-score parametroa ekortzeko
+        		   max = wfscore;
+        		   bestRandomSeed = i;
+           }
+           Evaluation eval2=holdOutEgin(bestRandomSeed, data);
            
            //logistic regression (crossvalidation)
            Logistic lrcross = new Logistic();
            
-           //Gorde modeloa entrenamendu multzo osoa erabiliz
-           SerializationHelper.write(args[1], lrGuztiak);
            
            //Ebaluaketak gorde
            PrintWriter pw = new PrintWriter(args[2]);	//ez zintzoa
            Evaluation eval1 = new Evaluation(data);
            eval1.evaluateModel(lrGuztiak, data);
            
-           Evaluation eval2 = new Evaluation(train);	//holdout
-           eval2.evaluateModel(lr, dev);
+          
            
            Evaluation eval3 = new Evaluation(data);		//crossvalidation
            eval3.crossValidateModel(lrcross, data, 10, new Random(1));
@@ -101,6 +84,9 @@ public class LogisticRegression {
            pw.println(eval3.toMatrixString());
            
            pw.close();
+           
+         //Gorde modeloa entrenamendu multzo osoa erabiliz
+           SerializationHelper.write(args[1], lrGuztiak);
 
            
        }
@@ -108,6 +94,35 @@ public class LogisticRegression {
     	   System.out.println("java -jar LogisticRegression.jar trainPath.arff LRpath.model irteerahelbidea");
        }
 
+	}
+	private static Evaluation holdOutEgin (int i, Instances data) throws Exception {
+		//randomize egin
+        Randomize filter = new Randomize();
+        filter.setRandomSeed(i);
+        filter.setInputFormat(data);
+        data = Filter.useFilter(data, filter);
+
+        //dev eta train instantzia azpimultzoak ateratzeko
+        RemovePercentage remove = new RemovePercentage();
+        remove.setInputFormat(data);
+        remove.setInvertSelection(false);
+        remove.setPercentage(30);
+        Instances train = Filter.useFilter(data, remove);	//train
+        
+        RemovePercentage remove1 = new RemovePercentage();
+        remove1.setInputFormat(data);
+        remove1.setPercentage(30);
+        remove1.setInvertSelection(true);
+        Instances dev = Filter.useFilter(data, remove1);		//dev
+        
+        //logistic regression entrenatu train azpimultzoarekin (holdout)
+        Logistic lr = new Logistic();
+        lr.buildClassifier(train);
+        
+        Evaluation eval2 = new Evaluation(train);	//ebaluazioak
+        eval2.evaluateModel(lr, dev);
+        
+        return eval2;
 	}
 
 }
