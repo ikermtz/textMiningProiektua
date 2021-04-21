@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 import DatuenErrepresentazioa.GetRaw;
+import DatuenErrepresentazioa.MakeCompatible;
 import DatuenErrepresentazioa.TransformRaw;
 import Iragarpenak.SMOPredictions;
 import Sailkatzailea.FSS;
@@ -77,10 +78,10 @@ public class Main {
 		            case "6": aukera6();
 		            		pressEnterToContinue();
                     		break;
-		            case "7":  ;
+		            case "7": aukera7();
           		  			pressEnterToContinue();
                     		break;
-		            case "8": 	;
+		            case "8": aukera8();
 		            		pressEnterToContinue();
 		            		break;
 		            case "9": aukera9(); 
@@ -136,13 +137,15 @@ public class Main {
 	 private static void aukera1() throws IOException, InterruptedException {
 		 System.out.println("\nSartu testu fitxategiak dauden direktorioaren path-a");
 		 String directorypath = sc.next();
-		 String [] parametroak = {directorypath,workspace+"/gordina.arff"};
+		 String [] parametroak = {directorypath,workspace+""};
+		 if (directorypath.contains(".txt")) parametroak[1]="trainGordina.arff";
+		 else parametroak[1]="testGordina.arff";
 		 
 		 GetRaw.main(parametroak);
 	 }
 	 
 	 private static void aukera2() throws Exception {
-		 String [] parametroak = {workspace+"/gordina.arff",workspace+"/rawDictionary.txt","","",workspace+"/bektoreak.arff"};
+		 String [] parametroak = {workspace+"/trainGordina.arff",workspace+"/rawDictionary.txt","","",workspace+"/trainBektoreak.arff"};
 		 System.out.println("\nTFIDF erabili nahi? Bai/Ez (defektuz BoW)");
 		 if (sc.next().toLowerCase().equals("bai"))	parametroak[2] = "-I";
 		 System.out.println("\nNonSparse formatua erabili nahi? Bai/Ez (defektuz Sparse)");
@@ -156,19 +159,19 @@ public class Main {
 		 System.out.println("\nLimite bat ezarri nahi? Bai/Ez (300 da maximoa)");
 		 if (sc.next().toLowerCase().equals("bai")) {
 			 System.out.println("Sartu zenbaki bat(negatiboak ez dira kontuan hartuko)");
-			 String [] parametroak = {workspace+"/bektoreak.arff",workspace+"/fss.arff" ,workspace+"/dictionary.txt",sc.next()};
+			 String [] parametroak = {workspace+"/trainBektoreak.arff",workspace+"/fss.arff" ,workspace+"/dictionary.txt",sc.next()};
 			 
 			 FSS.main(parametroak);
 			 }
 		 else {
-			 String [] parametroak = {workspace+"/bektoreak.arff",workspace+"/fss.arff" ,workspace+"/dictionary.txt"};
+			 String [] parametroak = {workspace+"/trainBektoreak.arff",workspace+"/fss.arff" ,workspace+"/dictionary.txt"};
 			 
 			 FSS.main(parametroak);
 			 } 
 	 }
 	 
 	/* private static void aukera3() throws Exception {
-		 String [] parametroak = {workspace+"/bektoreak.arff",workspace+"/fss.arff" ,workspace+"/dictionary.txt","301"};
+		 String [] parametroak = {workspace+"/trainBektoreak.arff",workspace+"/fss.arff" ,workspace+"/dictionary.txt","301"};
 		 System.out.println("\nLimite bat ezarri nahi? Bai/Ez (300 da maximoa)");
 		 if (sc.next().toLowerCase().equals("bai"))	parametroak[3] = sc.next();
 		 
@@ -197,16 +200,14 @@ public class Main {
 		 SMOModel.main(parametroak);
 	 }
 	 
-	 private static void aukera7() {
-		 System.out.println("C parametroa zehaztu (iradokizuna: x.y)");
-		 String cost = sc.next();
-		 String [] parametroak = {workspace+"/fss.arff",workspace+"/SMO.model", workspace+"/"};
+	 private static void aukera7() throws Exception {
+		 String [] parametroak = {workspace+"/testGordina.arff",workspace+"/dictionary.txt", workspace+"/testBektoreak.arff"}; //makecompatible: tfidf esta, y nonsparse?
 		 
-		 //SMOModel.main(parametroak);
+		 MakeCompatible.main(parametroak);
 	 }
 	 
 	 private static void aukera8() throws Exception {
-		 String [] parametroak = {workspace+"/test.arff",workspace+"/SMO.model", workspace+"/testPredictions.txt"};
+		 String [] parametroak = {workspace+"/testBektoreak.arff",workspace+"/SMO.model", workspace+"/predictions.txt"};
 		 
 		 SMOPredictions.main(parametroak);
 	 }
