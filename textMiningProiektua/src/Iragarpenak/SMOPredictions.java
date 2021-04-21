@@ -39,7 +39,7 @@ public class SMOPredictions {
             PrintWriter pw = new PrintWriter (args[2]);
             pw.println("Iragarpenak: ");
             pw.println();
-            pw.println("Nº\tReal\t\tPredicted");
+            pw.println("Nº\tReal\tPredicted");
             pw.println("\n");
             for(int i=0; i< eval.predictions().size();i+=1){
                 double iragarria = eval.predictions().get(i).predicted();
