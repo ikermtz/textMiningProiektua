@@ -203,9 +203,9 @@ public class Main {
 	 }
 	 
 	 private static void aukera6() throws Exception {
-		 System.out.println("Gamma parametroa zehaztu");
+		 System.out.println("Gamma parametroa zehaztu (iradokizuna: 0.001)");
 		 String gamma = sc.next();
-		 System.out.println("C parametroa zehaztu");
+		 System.out.println("C parametroa zehaztu (iradokizuka: 10)");
 		 String cost = sc.next();
 		 String [] parametroak = {workspace+"/fss.arff",workspace+"/SMO.model", workspace+"/TestPredictionsSVM.txt",gamma,cost};
 		 
