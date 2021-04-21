@@ -5,15 +5,22 @@ Erabakiak Hartzeko Euskarri Sistemak irakasgaiko proiektua. Testu meatzaritzaren
 Horretarako java eta weka-ko liburutegiak erabili ditugu. 
 
 -Testu gordina arff formatu ulergarrira pasa:
+
 	-String-ak Bow edo idftf
+	
 -Atributu Hautapena
+
 	-AttributeSelection erabilita
+	
 -Sailkapena
+
 	-SVM(SMO sailkatzailea weka) eta Logistic Regression(Logistic wekan) erabiltzen dira sailkatzaile gisa iragarpenak egiteko.
+	
 	-Parametro ekorketa.
 	
 -Ebaluazioa
-	-ebaluazio ez zintzoa, 100 hold-out, 10-fold cross validation.
+
+	-Ebaluazio ez zintzoa, 100 hold-out, 10-fold cross validation.
 
 -Iragarpenak.
 	
