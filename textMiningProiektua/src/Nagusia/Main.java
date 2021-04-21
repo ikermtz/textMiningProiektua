@@ -59,23 +59,32 @@ public class Main {
 			
 			 switch (aukera) 
 		        {
-		            case "1": aukera1();  
+		            case "1": aukera1();
+		            		pressEnterToContinue();
 		                    break;
 		            case "2": aukera2();
+		            		pressEnterToContinue();
 		                    break;
 		            case "3": aukera3();
+          		  			pressEnterToContinue();
 		                    break;
 		            case "4": aukera4();
+          		  			pressEnterToContinue();
 		                    break;
 		            case "5": aukera5();
+		            		pressEnterToContinue();
 		                    break;
 		            case "6": aukera6();
+		            		pressEnterToContinue();
                     		break;
 		            case "7":  ;
+          		  			pressEnterToContinue();
                     		break;
 		            case "8": 	;
+		            		pressEnterToContinue();
 		            		break;
 		            case "9": aukera9(); 
+          		  			pressEnterToContinue();
 		            		break;
 		            case "10":  bukatu= true;
                     		break;

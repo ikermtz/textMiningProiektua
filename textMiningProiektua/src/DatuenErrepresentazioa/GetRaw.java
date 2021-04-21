@@ -51,10 +51,14 @@ public class GetRaw {
 			}
 			pw.close();*/
 			
-			if (args[0].contains(".txt"))
-				TextFileToArff(args[0], args[1]);
-			else
-				TextToArffConverter(args[0], args[1]);
+			File file = new File(args[0]);
+			if (file.exists()){
+				if (file.isDirectory()) {
+					direcoryToArffConverer(args[0], args[1]);
+				}
+				else
+					textFileToArffConverter(args[0], args[1]);
+			} else System.out.println("Fitxategia edo direktorioa ez da existitzen");
 			
 			
 		}
@@ -69,7 +73,7 @@ public class GetRaw {
  	 * @param target Irteerako arff fitxategia non gordeko den
  	 * @throws IOException Signals that an I/O exception has occurred.
  	 */
-	public static void TextToArffConverter(String directory, String target) throws IOException {
+	public static void direcoryToArffConverer(String directory, String target) throws IOException {
 
 		TextDirectoryLoader loader = new TextDirectoryLoader();
 	    loader.setDirectory(new File(directory));
@@ -80,25 +84,25 @@ public class GetRaw {
 	    writer.println(dataRaw);
 	    writer.close();
 	}
-	public static void TextFileToArff(String file, String target) throws FileNotFoundException {
+	public static void textFileToArffConverter(String file, String target) throws FileNotFoundException {
 		PrintWriter pw = new PrintWriter(target);
 		pw.println("@relation blindSpam\n");
 		pw.println("@attribute text string");
 		pw.println("@attribute @@class@@ {spam,ham}\n");
-		pw.println("@data\n");
+		pw.println("@data");
 		try {
 			String line;
 			Scanner scanner = new Scanner(new File(file));
 			while (scanner.hasNextLine()) {
-				line="'"+scanner.nextLine().toLowerCase()+"' ";
+				line="'"+scanner.nextLine().toLowerCase()+"'";
 				line= line+",?";
-				
+				pw.println(line);
 				
 			}
+			scanner.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
 		pw.close();
 	}
 
