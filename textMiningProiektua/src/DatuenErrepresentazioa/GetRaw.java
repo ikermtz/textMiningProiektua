@@ -96,7 +96,7 @@ public class GetRaw {
 			while (scanner.hasNextLine()) {
 				line=scanner.nextLine().toLowerCase();
 				line = line.replaceAll("'", " ");
-				line= "'"+line+"',ham";
+				line= "'"+line+"',?";
 				pw.println(line);
 				
 			}
