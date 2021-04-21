@@ -195,7 +195,7 @@ public class Main {
 		 String gamma = sc.next();
 		 System.out.println("C parametroa zehaztu");
 		 String cost = sc.next();
-		 String [] parametroak = {workspace+"/trainBektoreak.arff",workspace+"/SMO.model", workspace+"/TestPredictionsSVM.txt",gamma,cost};
+		 String [] parametroak = {workspace+"/fss.arff",workspace+"/SMO.model", workspace+"/TestPredictionsSVM.txt",gamma,cost};
 		 
 		 SMOModel.main(parametroak);
 	 }
