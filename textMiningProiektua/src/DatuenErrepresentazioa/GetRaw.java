@@ -1,15 +1,14 @@
 package DatuenErrepresentazioa;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.Scanner;
 
 import weka.core.Instances;
-import weka.core.converters.ArffSaver;
 import weka.core.converters.TextDirectoryLoader;
-import weka.core.pmml.jaxbbindings.Attribute;
 
 public class GetRaw {
 	
@@ -53,7 +52,7 @@ public class GetRaw {
 			pw.close();*/
 			
 			if (args[0].contains(".txt"))
-				TextFileToArff();
+				TextFileToArff(args[0], args[1]);
 			else
 				TextToArffConverter(args[0], args[1]);
 			
@@ -81,30 +80,26 @@ public class GetRaw {
 	    writer.println(dataRaw);
 	    writer.close();
 	}
-	public static void TextFileToArff(String directory, String target) {
-		/*String line;
-		ArrayList<Attribute> atts = new ArrayList();
-		atts.add(new Attribute("text"));
+	public static void TextFileToArff(String file, String target) throws FileNotFoundException {
+		PrintWriter pw = new PrintWriter(target);
+		pw.println("@relation blindSpam\n");
+		pw.println("@attribute text string");
+		pw.println("@attribute @@class@@ {spam,ham}\n");
+		pw.println("@data\n");
 		try {
-			Scanner scanner = new Scanner(new File(directory));
+			String line;
+			Scanner scanner = new Scanner(new File(file));
 			while (scanner.hasNextLine()) {
-				line=scanner.nextLine();
-				Instance inst = new DenseInstance(1);
-				inst.setValue(text, target);, line);
+				line="'"+scanner.nextLine().toLowerCase()+"' ";
+				line= line+",?";
+				
 				
 			}
-			scanner.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}*/
+		}
 		
-		
-		
-		
-		ArffSaver s= new ArffSaver();
-		 s.setInstances(data);
-		 s.setFile(new File("newFile.arff"));
-		s.writeBatch();
+		pw.close();
 	}
 
 }
