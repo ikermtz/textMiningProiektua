@@ -212,7 +212,7 @@ public class Main {
 		 SMOPredictions.main(parametroak);
 	 }
 	 
-	 private static void aukera9() throws Exception {//da
+	 private static void aukera9() throws Exception {
 		 System.out.println("Sartu arff baten path-a instantziak bistaratzeko");
 		 String [] parametroak = {sc.next()};
 		 VisualizeInstances.main(parametroak);
