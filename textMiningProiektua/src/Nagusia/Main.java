@@ -135,15 +135,16 @@ public class Main {
 	 }
 	 
 	 private static void aukera1() throws IOException, InterruptedException {
+		 String hola = "" ;
 		 System.out.println("\nSartu testu fitxategiak dauden direktorioaren path-a");
 		 String directorypath = sc.next();
 		 String [] parametroak = {directorypath,workspace};
 		 if (directorypath.contains(".txt")) { 
-			 String hola = "/testGordina.arff";
+			 hola = "/testGordina.arff";
 			 parametroak[1]+= hola;
 		 }
 		 else {
-			 String hola = "/trainGordina.arff";
+			 hola = "/trainGordina.arff";
 			 parametroak[1]+=hola;
 		 }
 		 
