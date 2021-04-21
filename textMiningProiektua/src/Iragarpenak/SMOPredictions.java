@@ -35,7 +35,7 @@ public class SMOPredictions {
             Classifier model = (Classifier) SerializationHelper.read(args[1]);
             Evaluation eval = new Evaluation (data);
             eval.evaluateModel(model, data);
-            
+            //irteerafitxategia
             PrintWriter pw = new PrintWriter (args[2]);
             pw.println("Iragarpenak: ");
             pw.println();
