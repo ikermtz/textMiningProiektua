@@ -44,17 +44,7 @@ public class SMOPredictions {
             for(int i=0; i< eval.predictions().size();i+=1){
                 double iragarria = eval.predictions().get(i).predicted();
                 pw.println((i+1)+"\t"+data.instance(i).stringValue(data.classIndex())+"\t"+data.classAttribute().value((int)iragarria)+"\n");
-            }
-            
-            long Hasiera = System.currentTimeMillis();       
-            try{
-                Thread.sleep(1000);
-            }catch(InterruptedException e){
-            	System.out.println("Interrupted Exception");
-            }          
-            long Amaiera = System.currentTimeMillis();           
-            double Denbora = (double) ((Amaiera - Hasiera)/1000);      
-            pw.println("Exekuzio denbora: "+ Denbora +" segundu");
+            }     
             pw.close();
             
         }
