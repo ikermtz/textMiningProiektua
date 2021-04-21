@@ -67,7 +67,7 @@ public class LogisticRegression {
            SerializationHelper.write(args[1], lrGuztiak);
            
            //Ebaluaketak gorde
-           PrintWriter pw = new PrintWriter(args[2]+"LogisticRegression");	//ez zintzoa
+           PrintWriter pw = new PrintWriter(args[2]);	//ez zintzoa
            Evaluation eval1 = new Evaluation(data);
            eval1.evaluateModel(lrGuztiak, data);
            

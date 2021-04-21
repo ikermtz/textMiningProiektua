@@ -25,13 +25,7 @@ public class MakeCompatible {
 		
 		if(args.length  !=3) {
 			System.out.println("Ez duzu arguments atala behar bezala bete!");
-		
-			//Arguments atalean 3 parametro ezberdin behar ditu programa honek
-			//1.parametroa jada exisistitzen den .arff fitxategia izango da (dev multzoa lortzeko)
-			//2. parametroa TransformRaw-etik lortzen dugun hiztegia izango da
-			//3. parametroa programa honek sortuko duen .arff fitxategia gordetzeko helbidea izango da
-		
-		
+			System.out.println("java -jar test.arff hiztegia.txt emaitza.arff");
 		}
 		else{
 			String arffIn= args[0];
@@ -92,10 +86,10 @@ public class MakeCompatible {
 		CSVLoader loader = new CSVLoader();
 		loader.setSource(new File(filename));
 
-		// CSV uses no header
-		String[] options = new String[1];
-		options[0] = "-H";
-		loader.setOptions(options);
+//		// CSV uses no header
+//		String[] options = new String[1];
+//		options[0] = "-H";
+//		loader.setOptions(options);
 
 		Instances data = loader.getDataSet();
 

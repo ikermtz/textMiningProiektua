@@ -4,8 +4,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+
 import weka.core.Instances;
 import weka.core.converters.TextDirectoryLoader;
+import weka.core.pmml.jaxbbindings.Attribute;
 
 public class GetRaw {
 	
@@ -48,7 +51,11 @@ public class GetRaw {
 			}
 			pw.close();*/
 			
-			TextToArffConverter(args[0], args[1]);
+			if (args[0].contains(".txt"))
+				TextFileToArff();
+			else
+				TextToArffConverter(args[0], args[1]);
+			
 			
 		}
 		else System.out.println("Sintaxia txarto dago. Laguntza jasotzeko argumenturik ez erabili");
@@ -72,6 +79,31 @@ public class GetRaw {
 	    PrintWriter writer = new PrintWriter(fw);
 	    writer.println(dataRaw);
 	    writer.close();
+	}
+	public static void TextFileToArff(String directory, String target) {
+		/*String line;
+		ArrayList<Attribute> atts = new ArrayList();
+		atts.add(new Attribute("text"));
+		try {
+			Scanner scanner = new Scanner(new File(directory));
+			while (scanner.hasNextLine()) {
+				line=scanner.nextLine();
+				Instance inst = new DenseInstance(1);
+				inst.setValue(text, target);, line);
+				
+			}
+			scanner.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}*/
+		
+		
+		
+		
+		ArffSaver s= new ArffSaver();
+		 s.setInstances(data);
+		 s.setFile(new File("newFile.arff"));
+		s.writeBatch();
 	}
 
 }

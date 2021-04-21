@@ -21,24 +21,14 @@ public class ParametroEkorketa {
 	/** The data. */
 	private static Instances data;
 	
-	/**
-	 * The main method.
-	 *
-	 * @param args the arguments
-	 * @throws Exception the exception
-	 */
-	public static void main (String [] args) throws Exception{
-		parametroekorketa(args);
-	}
 	
     /**
-     * Parametroekorketa.
+     * The main method.
      *
-     * @param args the args
-     * @return the double[]
+     * @param args the arguments
      * @throws Exception the exception
      */
-    public static double[] parametroekorketa(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
     	
     	if (args.length==2) {
     	DataSource source = new DataSource(args[0]);
@@ -86,16 +76,10 @@ public class ParametroEkorketa {
         pw.println("Klase minoritarioaren fMeasure hoberena:");
         pw.println(maximoa);
         pw.close();
-        
-    	double[] parametroak = new double[2];
-    	parametroak[0] = cmax;
-        parametroak[1] = gammamax;
-        return parametroak;
     	}
     	else {
     		System.out.println("2 parametro sartu behar dituzu!");
 	    	System.out.println("java -jar ParametroEkorketa.jar data.arff irteerahelbidea");
-    		return null;
     	}
     }
     

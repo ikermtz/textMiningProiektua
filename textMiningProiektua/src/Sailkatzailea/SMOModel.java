@@ -26,19 +26,14 @@ public class SMOModel {
 	 * @throws Exception the exception
 	 */
 	public static void main(String[] args) throws Exception {
-		if (args.length==3) {
+		if (args.length==5) {
 			
 			   DataSource source = new DataSource(args[0]);
 	           Instances data = source.getDataSet();
 	           data.setClassIndex(data.numAttributes()-1);
+	           double gamma = Double.parseDouble(args[3]);
+	           double c = Double.parseDouble(args[4]);
 	           
-	           String parametroak[] = new String[2];
-	           parametroak[0]=args[0];
-	           parametroak[1]=args[2];
-	           
-	           double[] parametro_optimoak = ParametroEkorketa.parametroekorketa(parametroak);
-	           double c = parametro_optimoak[0];
-	           double gamma = parametro_optimoak[1];
 	           RBFKernel kernel = new RBFKernel();
 	           kernel.setGamma(gamma);
 	           
@@ -86,7 +81,7 @@ public class SMOModel {
 	           SerializationHelper.write(args[1], smoGuztiak);
 	           
 	           //Ebaluaketak gorde
-	           PrintWriter pw = new PrintWriter(args[2]+"SMOModel");	//ez zintzoa
+	           PrintWriter pw = new PrintWriter(args[2]);	//ez zintzoa
 	           Evaluation eval1 = new Evaluation(data);
 	           eval1.evaluateModel(smoGuztiak, data);
 	           
@@ -124,7 +119,7 @@ public class SMOModel {
 	           
 	       }
 	       else {
-	    	   System.out.println("java -jar SMO.jar trainPath.arff smopath.model irteerahelbidea");
+	    	   System.out.println("java -jar SMO.jar trainPath.arff smopath.model irteerahelbidea gamma cost");
 	       }
 
 	}

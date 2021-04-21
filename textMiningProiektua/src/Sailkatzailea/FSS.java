@@ -26,7 +26,7 @@ public class FSS {
 	 * @throws Exception the exception
 	 */
 	public static void main(String[] args) throws Exception{
-		if (args.length==3) {
+		if (args.length==3 || args.length==4) {
 			DataSource sauce = new DataSource(args[0]);
 			Instances data = sauce.getDataSet();
 			data.setClassIndex(data.numAttributes()-1);
@@ -35,8 +35,8 @@ public class FSS {
 			GainRatioAttributeEval gr = new GainRatioAttributeEval();	//InfoGainRatio atributu ebaluatzailea 
 			
 			Ranker ranker = new Ranker();		//atributuak rankeatzeko
-			ranker.setThreshold(0.01);			//balio hau aldatzen probatu
-			ranker.setNumToSelect(50);
+			if (args.length==4 && Integer.parseInt(args[3])<=300) ranker.setNumToSelect(Integer.parseInt(args[3]));			//atributu kopurua limitatzeko
+			ranker.setThreshold(0.1);			//balio hau aldatzen probatu
 			
 			AttributeSelection as = new AttributeSelection();
 			as.setInputFormat(data);
@@ -58,7 +58,7 @@ public class FSS {
 		}
 		else {
 			System.out.println("3 parametro behar dira eta zuk "+args.length+" jarri dituzu!!");
-			System.out.println("java -jar FSS.jar trainPath.arff filteredPath.arff hiztegia");
+			System.out.println("java -jar FSS.jar trainPath.arff filteredPath.arff hiztegia atributuLimitea(aukerazkoa)");
 		}
 
 	}
