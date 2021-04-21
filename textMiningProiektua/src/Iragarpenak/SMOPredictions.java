@@ -50,7 +50,11 @@ public class SMOPredictions {
             pw.println("\n"+eval.toMatrixString());
 
             long Hasiera = System.currentTimeMillis();       
-            Thread.sleep(1000);           
+            try{
+                Thread.sleep(1000);
+            }catch(InterruptedException e){
+            	System.out.println("Interrupted Exception");
+            }          
             long Amaiera = System.currentTimeMillis();           
             double Denbora = (double) ((Amaiera - Hasiera)/1000);      
             pw.println("Exekuzio denbora: "+ Denbora +" segundu");
