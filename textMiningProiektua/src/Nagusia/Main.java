@@ -179,7 +179,7 @@ public class Main {
 	 }*/
 	 
 	 private static void aukera4() throws Exception {
-		 String [] parametroak = {workspace+"/fss.arff",workspace+"/"};
+		 String [] parametroak = {workspace+"/fss.arff",workspace+"/parametroEkorketa.txt"};
 		 
 		 ParametroEkorketa.main(parametroak);
 	 }

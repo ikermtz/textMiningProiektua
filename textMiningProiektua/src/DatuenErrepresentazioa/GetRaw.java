@@ -94,8 +94,9 @@ public class GetRaw {
 			String line;
 			Scanner scanner = new Scanner(new File(file));
 			while (scanner.hasNextLine()) {
-				line="'"+scanner.nextLine().toLowerCase()+"'";
-				line= line+",?";
+				line=scanner.nextLine().toLowerCase();
+				line = line.replaceAll("'", " ");
+				line= "'"+line+"',ham";
 				pw.println(line);
 				
 			}

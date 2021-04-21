@@ -50,8 +50,10 @@ public class FSS {
 			saver.writeBatch();
 			
 			PrintWriter pw = new PrintWriter(args[2]);				//hiztegia gordetzeko
+			pw.println();
 			for (int i=0; i<filteredData.numAttributes()-1; i++) {
-                pw.println(filteredData.attribute(i).name());
+				String s = filteredData.attribute(i).name();
+                pw.println(s.substring(0, s.length() - 2));
             }
             pw.close();
 			

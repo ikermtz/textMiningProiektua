@@ -47,8 +47,7 @@ public class MakeCompatible {
 			Instances dev= source.getDataSet();
 			
 			//dev multzoaren klasea definitu
-			if(dev.classIndex()==-1)
-				dev.setClassIndex(dev.numAttributes()-1);
+			dev.setClassIndex(dev.numAttributes()-1);
 			
 				
 			
@@ -70,7 +69,7 @@ public class MakeCompatible {
 			ArffSaver arffSaver = new ArffSaver();
 			arffSaver.setInstances(dev);
 			arffSaver.setDestination(new File(arffOut));
-			arffSaver.setFile(new File(arffOut.toString()+".arff"));
+			arffSaver.setFile(new File(arffOut.toString()));
 			arffSaver.writeBatch();	
 		}		
 	}
