@@ -13,6 +13,9 @@ import weka.filters.unsupervised.attribute.Reorder;
 /**
  * The Class MakeCompatible.
  */
+
+//ATRIBUTUEN HAUTAPENA//
+
 public class MakeCompatible {
 	
 	/**
