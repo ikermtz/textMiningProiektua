@@ -10,6 +10,8 @@ import java.util.Scanner;
 import weka.core.Instances;
 import weka.core.converters.TextDirectoryLoader;
 
+//RAW DATUAK .arff FORMATURA
+
 public class GetRaw {
 	
 	/**
